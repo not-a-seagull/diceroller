@@ -1,0 +1,16 @@
+{
+  "name": "dice_roller",
+  "version": "1.0.0",
+  "description": "Roll some D&D dice!",
+  "main": "index.js",
+  "author": "not_a_seagull",
+  "license": "BSD-3-Clause",
+  "private": false,
+  "devDependencies": {
+    "@types/node": "^12.12.31",
+    "preact": "^10.3.4",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1"
+  }
+}
