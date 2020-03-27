@@ -25,7 +25,8 @@ module.exports = {
   },
 
   externals: {
-    "preact": "preact"
+    "preact": "preact",
+    "jquery": "$"
   },
 
   output: {

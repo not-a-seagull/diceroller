@@ -1,6 +1,7 @@
 //! BSD License, see https://opensource.org/licenses/BSD-3-Clause
 
 import { Component, h, render } from "preact";
+import * as $ from "jquery";
 
 interface DiceRollerProps {
     dice_type: number,
@@ -73,7 +74,8 @@ class DiceRoller extends Component<DiceRollerProps, DiceRollerState> {
     }
 }
 
-document.onload = () => {
+$(() => {
+    console.log("Launching...");
     let element = document.getElementById("main");
     if (element) {
         // @ts-ignore
@@ -90,4 +92,4 @@ document.onload = () => {
             </div>
         ));
     }
-};
+});
