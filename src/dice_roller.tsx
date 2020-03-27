@@ -41,7 +41,7 @@ class DiceRoller extends Component<DiceRollerProps, DiceRollerState> {
         let results: number[] = []; 
 
         for (let i = 0; i < this.state.dice_count; i++) {
-            results.push(get_random_num(this.props.dice_type));
+            results.push(get_random_num(this.props.dice_type) + 1);
             new_text += "" + results[i];
             if (i != this.state.dice_count - 1) {
                 new_text += " + ";
@@ -51,6 +51,8 @@ class DiceRoller extends Component<DiceRollerProps, DiceRollerState> {
         if (results.length > 1) {
             new_text += " = " + results.reduce((sum: number, elem: number) => { return sum + elem; });
         }
+
+        console.log("New text is ", new_text);
 
         this.setState((state: DiceRollerState) => {
             return Object.assign({}, state, { current_text: new_text });
@@ -63,9 +65,9 @@ class DiceRoller extends Component<DiceRollerProps, DiceRollerState> {
               <table>
                 <tr>
                   <td>Roll </td>
-                  <td><input type="number" value={1} /></td>
+                  <td><input type="number" min={1} value={this.state.dice_count} onChange={this.handle_spin_change.bind(this)} /></td>
                   <td>d{this.props.dice_type}</td>
-                  <td><input type="button" value="Submit" /></td>
+                  <td><input type="button" value="Submit" onClick={this.handle_submit.bind(this)} /></td>
                   <td>{this.state.current_text}</td>
                 </tr>
               </table>
@@ -77,9 +79,9 @@ class DiceRoller extends Component<DiceRollerProps, DiceRollerState> {
 $(() => {
     console.log("Launching...");
     let element = document.getElementById("main");
-    if (element) {
+    if (element != undefined) {
         // @ts-ignore
-        render(element, (
+        render((
             <div>
                 <DiceRoller dice_type={2} />
                 <DiceRoller dice_type={4} />
@@ -90,6 +92,6 @@ $(() => {
                 <DiceRoller dice_type={20} />
                 <DiceRoller dice_type={100} />
             </div>
-        ));
+        ), element);
     }
 });
